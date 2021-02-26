@@ -17,7 +17,7 @@ async def get_bytes(_decoded: str):
     return binary
 
 class Client:
-    __slots__ = ('token', 'session', 'loop')
+    __slots__ = ('token', 'session', 'loop', 'base')
     
     def __init__(self, token: str, session: aiohttp.ClientSession = None, loop: asyncio.AbstractEventLoop = None) -> None:
         self.token = token
