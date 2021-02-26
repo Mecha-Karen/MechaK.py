@@ -5,7 +5,7 @@ import typing as tp ## Nobody make a joke here.
 import aiohttp
 import base64
 
-import .errors
+from .errors import *
 
 __all__ = (
     "Client"
