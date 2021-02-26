@@ -7,5 +7,5 @@ from urllib.parse import quote, urlencode
 import .errors
 
 class Client:
-  def __init__(self, token: str):
-    self.token = token
+    def __init__(self, token: str):
+        self.token = token
