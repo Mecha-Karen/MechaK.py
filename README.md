@@ -11,3 +11,16 @@ Because im lazy to upload to pypi, to get the module `pip install git+https://gi
 >>> print(my_math)
 2
 >>> ## Not to copy just an example
+```
+
+Intergrating with discord.py
+```py
+import MK
+
+client = MK.client('$API TOKEN')
+
+@self.command()
+async def invert(ctx, user: discord.Member):
+    image = await client.image('invert', user.avatar_url_as('png'))
+    await ctx.send(file=discord.File(fp=image, filename='invert.png'))
+```
