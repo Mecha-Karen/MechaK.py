@@ -43,7 +43,7 @@ class Client:
         data = await resp.json()
         image = data['_bytes']
         ## decoded in utf-8, base64
-        _bytes = get_bytes(image)
+        _bytes = await get_bytes(image)
         return _bytes
             
     async def math(self, equation: str) -> str:
