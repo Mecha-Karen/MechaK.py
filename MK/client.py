@@ -41,7 +41,7 @@ class Client:
         if resp.status == 429:
             raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
         data = await resp.json()
-        image = data['_bytes']
+        image = data['bytes']
         ## decoded in utf-8, base64
         _bytes = await get_bytes(image)
         return _bytes
