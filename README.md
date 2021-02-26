@@ -21,6 +21,6 @@ client = MK.client('$API TOKEN')
 
 @self.command()
 async def invert(ctx, user: discord.Member):
-    image = await client.image('invert', user.avatar_url_as('png'))
+    image = await client.image('invert', user.avatar_url_as(static_format='png'))
     await ctx.send(file=discord.File(fp=image, filename='invert.png'))
 ```
