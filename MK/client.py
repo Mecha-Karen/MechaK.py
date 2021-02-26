@@ -28,7 +28,7 @@ class Client:
         new_url = self.base
         new_url += 'v1/image?filter={}'.format(_filter.lower())
         
-        resp = await self.session.post(new_url, data={'image_url': image_url}, headers = {'Authorization': self.token})
+        resp = await self.session.post(new_url, json={'image_url': image_url}, headers = {'Authorization': self.token})
         
         if resp.status == 400:
             raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
