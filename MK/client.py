@@ -69,13 +69,13 @@ class Client:
             raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
         if resp.status == 429:
             raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
-        return resp.json()['output']
+        return (await resp.json())['output']
     
     async def chatbot(self, message: str) -> str:
         new_url = self.base
         new_url += 'v1/chatbot'
         
-        resp = await self.session.post(new_url, data={'message': message}, headers = {'Authorization': self.token})
+        resp = await self.session.post(new_url, json={'message': message}, headers = {'Authorization': self.token})
         if resp.status == 400:
             raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
         if resp.status == 404:
@@ -86,6 +86,21 @@ class Client:
             raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
         if resp.status == 429:
             raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
-        return resp.json()['output']
+        return (await resp.json())['output']
         
+    async def anime(self, category: str) -> str:
+        new_url = self.base
+        new_url += 'v1/anime?category={}'.format(category)
         
+        resp = await self.session.get(new_url, headers = {'Authorization': self.token})
+        if resp.status == 400:
+            raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
+        if resp.status == 404:
+            raise errors.NotFound('API Raised an Exception: %s' % await resp.json()['error'])
+        if resp.status == 401 or resp.status == 403:
+            raise errors.AuthError('API Raised an Excpetion: %s' % await resp.json()['error'])
+        if resp.status == 405:
+            raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
+        if resp.status == 429:
+            raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
+        return (await resp.json())['data'][0]
