@@ -11,6 +11,14 @@ __all__ = (
     "Client"
 )
 
+__bases__ = (
+    'invert', 'equalize', 'grayscale', 
+    'mirror', 'posterize', 'solarize', 
+    'transpose', 'flip', 'gamma', 'rainbow', 
+    'autumn', 'inferno', 'twilight', 
+    'warp', 'blur', 'swirl', 'cartoon'
+)
+
 async def get_bytes(_decoded: str):
     encoded = _decoded.encode('utf-8')  ## Originally decoded so its a string
     binary = base64.b64decode(encoded)
