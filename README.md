@@ -29,7 +29,6 @@ client = MK.client('$API TOKEN')
 async def invert(ctx, user: discord.Member):
     image = await client.image('invert', str(user.avatar_url_as(static_format='png')))
     ## You can put any image file as long as it can accessed by the API
-    async with aiofiles.open('filename.png', mode='wb') as f:
-        await f.write(image)
-    await ctx.send(file=discord.File('./filename.png', filename='invert.png'))
+    ## recomend using PNG as its less likely to cause P MODE errors! 
+    await ctx.send(file=discord.File(fp=image, filename='invert.png'))
 ```
