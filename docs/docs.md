@@ -9,7 +9,7 @@ The API currently has 4 endpoints!
 This endpoint is the chatbot were it allows users to interact with a robot and talk with them
 
 Offers:
-Deep analysis of keywords to optimise its responses!
+Deep analysis of keywords to optimise its responses!<br/>
 If it cannot understand a sentence its automatically logged so my creators can help improve me!!!
 
 ```yaml
@@ -43,10 +43,11 @@ curl example:
 This endpoint solves simple maths problems for you and understands equations in english such as `one add one`.
 
 Offers:
-  Quick responses and can solve problems
+<br/>
+  Quick responses and can solve problems<br/>
   Worded responses | Not perfect as of now!
   
-Soon to come:
+Soon to come:<br/>
   More advanced math equations!
   
 ```yaml
@@ -74,18 +75,29 @@ curl example:
 #### Image Manipulation:
 Applies various filters to your images.
 
-Current Filters:<br/>
-  invert<br/>
-  equalize <br/>
-  grayscale<br/>
-  mirror <br/>
-  posterize <br/>
-  solarize<br/>
-  transpose <br/>
-  flip<br/>
-  blur<br/>
+**Current Filters**:<br/>
+  BASIC and one of the fastest to finish:<br>
+  ```
+  invert
+  equalize 
+  grayscale
+  mirror 
+  posterize 
+  solarize
+  transpose 
+  flip
+  blur
+  ```
   
-  // More coming soon!
+  Experimental:
+  ```
+  gamma
+  rainbow
+  autumn
+  twilight
+  cartoon
+  warp
+  ```
   
 Notes:
 Images returned are encoded in `BASE-64` - Which has been decoded to `UTF-8`
