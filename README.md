@@ -15,13 +15,10 @@ Because im lazy to upload to pypi, to get the module `pip install git+https://gi
 
 Intergrating with discord.py
 
-Due to the unsupported method of using raw bytes to send which hasn't been added to discord.py
-We have to use a seperate library to send our file. This speeds up the API as we dont need to save files.
-I will issue a temp fix in the future!
+raw bytes issue has been fixed enjoy!
 
 ```py
 import MK
-import aiofiles
 
 client = MK.client('$API TOKEN')
 
