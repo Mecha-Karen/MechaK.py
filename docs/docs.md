@@ -107,8 +107,39 @@ HEADERS:
   Authorization: $API TOKEN
   
 curl example:
-    $ curl -XPOST 'https://api.mechakaren.xyz/v1/math' \
+    $ curl -XPOST 'https://api.mechakaren.xyz/v1/image?filter=FILTER HERE' \
     -H "Authorization: $TOKEN" \
     -H "Content-Type: application/json" \
     -d {"image_url": "image url"}
 ```
+
+#### Anime
+Returns gifs and images on a certain category!
+
+Categories:
+    SLAP >> WIP :: coming soon
+    kill >> WIP :: Active / Low content -> count 6
+    hug >> WIP :: Active / decent content -> count 40 - 50
+    pat >> WIP :: Active / decent content -> count 40 - 50
+    kiss >> WIP :: Active / decent content -> count 40 - 50
+    
+```yaml
+UP: True
+UPTIME: NOT LOGGED
+METHOD: GET
+
+RETURNS:
+  {
+    "Bearer": USERID,
+    "category": "PAT",
+    "data": [
+        URL
+    ]
+  }
+  
+HEADERS:
+  Authorization: $API TOKEN
+  
+curl example:
+    $ curl 'https://api.mechakaren.xyz/v1/anime?category=CATEGORY HERE' \
+    -H "Authorization: $TOKEN"
