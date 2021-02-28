@@ -75,15 +75,15 @@ curl example:
 Applies various filters to your images.
 
 Current Filters:
-  invert
-  equalize 
-  grayscale
-  mirror 
-  posterize 
-  solarize
-  transpose 
-  flip
-  blur
+  invert<br/>
+  equalize <br/>
+  grayscale<br/>
+  mirror <br/>
+  posterize <br/>
+  solarize<br/>
+  transpose <br/>
+  flip<br/>
+  blur<br/>
   
   // More coming soon!
   
@@ -117,11 +117,11 @@ curl example:
 Returns gifs and images on a certain category!
 
 Categories:
-    SLAP >> WIP :: coming soon
-    kill >> WIP :: Active / Low content -> count 6
-    hug >> WIP :: Active / decent content -> count 40 - 50
-    pat >> WIP :: Active / decent content -> count 40 - 50
-    kiss >> WIP :: Active / decent content -> count 40 - 50
+    SLAP >> WIP :: coming soon<br/>
+    kill >> WIP :: Active / Low content -> count 6<br/>
+    hug >> WIP :: Active / decent content -> count 40 - 50<br/>
+    pat >> WIP :: Active / decent content -> count 40 - 50<br/>
+    kiss >> WIP :: Active / decent content -> count 40 - 50<br/>
     
 ```yaml
 UP: True
