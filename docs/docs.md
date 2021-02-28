@@ -22,4 +22,10 @@ RETURNS:
   
 HEADERS:
   Authorization: $API TOKEN
-```
+  
+curl example:
+    $ curl -XPOST 'https://api.mechakaren.xyz/v1/chatbot' \
+    -H "Authorization: $TOKEN" \
+    -H "Content-Type: application/json" \
+    -d {"message": "Hello"}
+``` 
