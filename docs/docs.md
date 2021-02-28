@@ -97,6 +97,23 @@ Applies various filters to your images.
   twilight
   cartoon
   warp
+  cartoon
+  bone
+  winter
+  ocean
+  summer
+  spring
+  cool
+  hsv
+  hot
+  parula
+  magma
+  plasma
+  viridis
+  cividis
+  twil
+  turbo
+  green
   ```
   
 Notes:
