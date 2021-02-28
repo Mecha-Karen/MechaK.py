@@ -74,7 +74,7 @@ curl example:
 #### Image Manipulation:
 Applies various filters to your images.
 
-Current Filters:
+Current Filters:<br/>
   invert<br/>
   equalize <br/>
   grayscale<br/>
