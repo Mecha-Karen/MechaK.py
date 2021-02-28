@@ -1,9 +1,10 @@
 import asyncio
 import random
 import re
-import typing as tp ## Nobody make a joke here.
+import typing as tp     ## Nobody make a joke here.
 import aiohttp
 import base64
+import io
 
 from .errors import *
 
@@ -23,6 +24,10 @@ async def get_bytes(_decoded: str):
     encoded = _decoded.encode('utf-8')  ## Originally decoded so its a string
     binary = base64.b64decode(encoded)
     return binary
+
+async def return_img(_encoded):
+    data = await get_bytes(_encoded)
+    return io.BytesIO(data)
 
 class Client:
     __slots__ = ('token', 'session', 'loop', 'base')
@@ -51,7 +56,7 @@ class Client:
         data = await resp.json()
         image = data['bytes']
         ## decoded in utf-8, base64
-        _bytes = await get_bytes(image)
+        _bytes = await return_img(image)
         return _bytes
             
     async def math(self, equation: str) -> str:
