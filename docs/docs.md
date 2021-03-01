@@ -1,14 +1,14 @@
 # Mecha Karen API docs!
 
 #### Endpoints:
-The API currently has 4 endpoints!
-    - 3 UP 
-    - 1 DOWN
+The API currently has 4 endpoints!<br/>
+    - 3 UP <br/>
+    - 1 DOWN<br/>
 
 #### Chatbot:
 This endpoint is the chatbot were it allows users to interact with a robot and talk with them
 
-Offers:
+Offers:<br/>
 Deep analysis of keywords to optimise its responses!<br/>
 If it cannot understand a sentence its automatically logged so my creators can help improve me!!!
 
@@ -76,44 +76,21 @@ curl example:
 Applies various filters to your images.
 
 **Current Filters**:<br/>
-  BASIC and one of the fastest to finish:<br>
-  ```
-  invert
-  equalize 
-  grayscale
-  mirror 
-  posterize 
-  solarize
-  transpose 
-  flip
-  blur
-  ```
   
-  Experimental:
+  FILTERS:<br/>
+    These endpoints apply different filters to change the looks of your image.<br/>
   ```
-  gamma
-  rainbow
-  autumn
-  twilight
-  cartoon
-  warp
-  cartoon
-  bone
-  winter
-  ocean
-  summer
-  spring
-  cool
-  hsv
-  hot
-  parula
-  magma
-  plasma
-  viridis
-  cividis
-  twil
-  turbo
-  green
+  invert        autumn      hsv
+  equalize      twilight    hot
+  grayscale     cartoon     parula     
+  mirror        warp        magma
+  posterize     cartoon     plasma
+  solarize      bone        viridis
+  transpose     winter      cividis
+  flip          ocean       twil
+  blur          summer      turbo
+  gamma         spring      green
+  rainbow       cool    
   ```
   
 Notes:
