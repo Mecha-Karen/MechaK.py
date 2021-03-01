@@ -117,8 +117,26 @@ Applies various filters to your images.
   ```
   
 Notes:
-Images returned are encoded in `BASE-64` - Which has been decoded to `UTF-8`
+Images returned are encoded in `BASE-64` - Which has been decoded to `UTF-8`<br/>
 To access the bytes first encode to `UTF-8` then decode the `BASE-64`
+
+**Example of how to retrieve the image in `python`:**
+```py
+import requests
+import base64
+
+r = requests.post('https://api.mechakaren.xyz/v1/image?filter=invert',
+                  json = {'image_url': 'my secret image url'},
+                  headers = {'Authorization': 'my secret token'}
+                )
+json = r.json()
+bytes = json['bytes']
+
+with open('./my_file.png', 'wb') as f:
+    encoded = bytes.encode('utf=8')
+    raw = base64.b64decode(encoded)
+    f.write(raw)
+```
 
 ```yaml
 UP: True
