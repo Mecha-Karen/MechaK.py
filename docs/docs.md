@@ -133,7 +133,7 @@ json = r.json()
 bytes = json['bytes']
 
 with open('./my_file.png', 'wb') as f:
-    encoded = bytes.encode('utf=8')
+    encoded = bytes.encode('utf-8')
     raw = base64.b64decode(encoded)
     f.write(raw)
 ```
