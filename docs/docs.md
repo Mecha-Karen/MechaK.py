@@ -80,17 +80,24 @@ Applies various filters to your images.
   FILTERS:<br/>
     These endpoints apply different filters to change the looks of your image.<br/>
   ```
-  invert        autumn      hsv
-  equalize      twilight    hot
-  grayscale     cartoon     parula     
-  mirror        warp        magma
-  posterize     cartoon     plasma
-  solarize      bone        viridis
-  transpose     winter      cividis
-  flip          ocean       twil
-  blur          summer      turbo
-  gamma         spring      green
-  rainbow       cool    
+  SIMPLE:
+  
+    invert        autumn      hsv
+    equalize      twilight    hot
+    grayscale     cartoon     parula     
+    mirror        warp        magma
+    posterize     plasma      viridis
+    solarize      bone        cividis
+    transpose     winter      twil
+    flip          ocean       turbo
+    blur          summer      green
+    gamma         spring      
+    rainbow       cool    
+  
+  Special Effects:
+    
+    cartoon
+    swirl
   ```
   
 Notes:
