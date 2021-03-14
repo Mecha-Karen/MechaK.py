@@ -91,7 +91,7 @@ class Client:
             raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
         if resp.status == 429:
             raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
-        return (await resp.json())['output']
+        return (await resp.json())['response']['answer']
         
     async def anime(self, category: str) -> str:
         new_url = self.base
