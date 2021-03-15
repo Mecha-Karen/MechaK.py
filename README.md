@@ -6,7 +6,7 @@ Because im lazy to upload to pypi, to get the module `pip install git+https://gi
 **Usage:**
 ```py
 >>> import MK
->>> client = MK.client('$API TOKEN')
+>>> client = MK.Client('$API TOKEN')
 >>> my_math = await client.math('1 + 1')
 >>> print(my_math)
 2
@@ -20,7 +20,7 @@ raw bytes issue has been fixed enjoy!
 ```py
 import MK
 
-client = MK.client('$API TOKEN')
+client = MK.Client('$API TOKEN')
 
 @self.command()
 async def invert(ctx, user: discord.Member):
