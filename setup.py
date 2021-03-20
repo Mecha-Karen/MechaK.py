@@ -23,7 +23,7 @@ setup(
   author_email='smelted02@gmail.com',
   license='Apache', 
   classifiers=classifiers,
-  keywords='API,Wrapper', 
+  keywords='Data-Types,Python', 
   packages=find_packages(),
   install_requires=[''] 
 )
