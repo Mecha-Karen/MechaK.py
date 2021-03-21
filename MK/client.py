@@ -20,13 +20,7 @@ __bases__ = (
     'warp', 'blur', 'swirl', 'cartoon'
 )
 
-async def get_bytes(_decoded: str):
-    encoded = _decoded.encode('utf-8')  ## Originally decoded so its a string
-    binary = base64.b64decode(encoded)
-    return binary
-
-async def return_img(_encoded):
-    data = await get_bytes(_encoded)
+async def return_img(data):
     return io.BytesIO(data)
 
 class Client:
@@ -53,9 +47,7 @@ class Client:
             raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
         if resp.status == 429:
             raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
-        data = await resp.json()
-        image = data['bytes']
-        ## decoded in utf-8, base64
+        image = await resp.read()
         _bytes = await return_img(image)
         return _bytes
             
