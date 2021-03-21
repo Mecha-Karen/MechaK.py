@@ -38,15 +38,16 @@ class Client:
         resp = await self.session.post(new_url, json={'image_url': image_url}, headers = {'Authorization': self.token})
         
         if resp.status == 400:
-            raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.BadRequest('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 404:
-            raise errors.NotFound('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.NotFound('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 401 or resp.status == 403:
-            raise errors.AuthError('API Raised an Excpetion: %s' % await resp.json()['error'])
+            raise errors.AuthError('API Raised an Excpetion: %s' % (await resp.json())['error'])
         if resp.status == 405:
-            raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.MethodError('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 429:
-            raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.Ratelimit('API Raised an Exception: %s' % (await resp.json())['error'])
+            
         image = await resp.read()
         _bytes = await return_img(image)
         return _bytes
@@ -57,16 +58,16 @@ class Client:
         
         resp = await self.session.post(new_url, json={'equation': equation}, headers = {'Authorization': self.token})
         if resp.status == 400:
-            raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.BadRequest('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 404:
-            raise errors.NotFound('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.NotFound('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 401 or resp.status == 403:
-            raise errors.AuthError('API Raised an Excpetion: %s' % await resp.json()['error'])
+            raise errors.AuthError('API Raised an Excpetion: %s' % (await resp.json())['error'])
         if resp.status == 405:
-            raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.MethodError('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 429:
-            raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
-        return (await resp.json())['output']
+            raise errors.Ratelimit('API Raised an Exception: %s' % (await resp.json())['error'])
+        return (await resp.json())['answer']
     
     async def chatbot(self, message: str) -> str:
         new_url = self.base
@@ -74,15 +75,15 @@ class Client:
         
         resp = await self.session.post(new_url, json={'message': message}, headers = {'Authorization': self.token})
         if resp.status == 400:
-            raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.BadRequest('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 404:
-            raise errors.NotFound('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.NotFound('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 401 or resp.status == 403:
-            raise errors.AuthError('API Raised an Excpetion: %s' % await resp.json()['error'])
+            raise errors.AuthError('API Raised an Excpetion: %s' % (await resp.json())['error'])
         if resp.status == 405:
-            raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.MethodError('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 429:
-            raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.Ratelimit('API Raised an Exception: %s' % (await resp.json())['error'])
         return (await resp.json())['response']['answer']
         
     async def anime(self, category: str) -> str:
@@ -91,13 +92,13 @@ class Client:
         
         resp = await self.session.get(new_url, headers = {'Authorization': self.token})
         if resp.status == 400:
-            raise errors.BadRequest('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.BadRequest('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 404:
-            raise errors.NotFound('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.NotFound('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 401 or resp.status == 403:
-            raise errors.AuthError('API Raised an Excpetion: %s' % await resp.json()['error'])
+            raise errors.AuthError('API Raised an Excpetion: %s' % (await resp.json())['error'])
         if resp.status == 405:
-            raise errors.MethodError('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.MethodError('API Raised an Exception: %s' % (await resp.json())['error'])
         if resp.status == 429:
-            raise errors.Ratelimit('API Raised an Exception: %s' % await resp.json()['error'])
+            raise errors.Ratelimit('API Raised an Exception: %s' % (await resp.json())['error'])
         return (await resp.json())['data'][0]
