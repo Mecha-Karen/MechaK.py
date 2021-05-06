@@ -10,7 +10,7 @@ classifiers = [
 
 setup(
   name='MechaK.py',
-  version='0.0.1',
+  version='0.0.3',
   description='Offical API Wrapper for the Mecha Karen API',
   long_description=open('README.md').read(),
   long_description_content_type = "text/markdown",
@@ -20,10 +20,9 @@ setup(
    "Issue tracker": "https://github.com/Seniatical/MechaK.py/issues",
    },
   author='Seniatical',
-  author_email='smelted02@gmail.com',
   license='Apache', 
   classifiers=classifiers,
-  keywords='Data-Types,Python', 
+  keywords='Wrapper,Python', 
   packages=find_packages(),
-  install_requires=[''] 
+  install_requires=['requests', 'aiohttp', 'aiofiles'] 
 )
