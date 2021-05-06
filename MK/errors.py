@@ -1,22 +1,15 @@
 class HTTPException(Exception):
-  def __init__(self, response: dict):
-    self.code = response['code']
-    self.message = response['error']
+  def __new__(cls, message: str) -> object:
+    return super().__new__(cls, message)
     
-class BadRequest(Exception):
+class APIException(HTTPException):
   pass
 
-class InternalServerError(Exception):
+class APIWarning(Warning):
   pass
 
-class AuthError(Exception):
-  pass
+def raise_error(response) -> None:
+  code = response['code']
+  error = response['error']
 
-class NotFound(Exception):
-  pass
-
-class Ratelimit(Exception):
-  pass
-
-class MethodError(Exception):
-  pass
+  raise APIException(f'{code}: {error}')
