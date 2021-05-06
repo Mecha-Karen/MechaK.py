@@ -18,6 +18,7 @@ async def my_coro():
 		...
 
 asyncio.run(my_coro())
+```
 
 ## Intergrating with discord.py
 ```py
