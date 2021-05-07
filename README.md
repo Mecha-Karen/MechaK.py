@@ -20,6 +20,19 @@ async def my_coro():
 asyncio.run(my_coro())
 ```
 
+## Sync Usage:
+```py
+from MK.Sync import Client
+
+with Client(*args, *kwargs) as client:
+	path = client.image(invert, 'my-url', save=True, path='./Images')
+
+## Define the client using the class
+client = Client(*args, **kwargs)
+
+...
+```
+
 ## Intergrating with discord.py
 ```py
 from MK.Async import Client
