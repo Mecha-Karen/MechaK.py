@@ -228,6 +228,3 @@ class Client:
 
     async def __aenter__(self, *args, **kwargs) -> ".Client":
         return self
-
-    
-            
