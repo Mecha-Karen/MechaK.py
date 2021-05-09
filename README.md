@@ -33,6 +33,30 @@ client = Client(*args, **kwargs)
 ...
 ```
 
+## Handling the response yourself
+
+**Sync**
+```py
+from MK.Sync import Client
+
+with Client(*args, **kwargs) as client:
+	with client.image('FILTER', 'IMAGE-URL', override_raw = True) as response:
+		...
+```
+
+**Async**
+```py
+from MK.Async import Client
+import asyncio
+
+async def my_coro():
+	async with Client(*args, **kwargs) as client:
+		async with (await client.image('FILTER', 'IMAGE-URL', override_raw = True)) as response:
+			...
+
+asyncio.run(my_coro())
+```
+
 ## Intergrating with discord.py
 ```py
 from MK.Async import Client
