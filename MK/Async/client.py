@@ -58,7 +58,7 @@ class Client:
         
         self.session = session or aiohttp.ClientSession(loop = loop)
         self.path = path
-        self.filter_uri = True
+        self.filter_uri = filter_uri
 
     async def image(self, filter: str, image_url: str, authorization: str = None, path: str = os.getcwd(), save: bool = False,
                     filename: str = 'result', extension: str = '.png', raw: bool = False, override_raw: bool = False) -> tp.Union[io.BytesIO, str, None, dict]:
