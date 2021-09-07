@@ -144,7 +144,7 @@ class Client:
         base += f'chatbot'
         authorization = authorization or self.token
 
-        response = await self.session.post(
+        response = await self.session.get(
             base, headers = {'Authorization': authorization}, json = {'message': message}
             )
         if override_raw:
