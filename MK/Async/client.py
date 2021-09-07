@@ -61,7 +61,9 @@ class Client:
         self.filter_uri = filter_uri
 
     async def image(self, filter: str, image_url: str, authorization: str = None, path: str = os.getcwd(), save: bool = False,
-                    filename: str = 'result', extension: str = '.png', raw: bool = False, override_raw: bool = False) -> tp.Union[io.BytesIO, str, None, dict]:
+                    filename: str = 'result', extension: str = '.png', raw: bool = False, override_raw: bool = False,
+                    get_type: bool = False,
+                   ) -> tp.Union[io.BytesIO, str, None, dict]:
         r"""
         Make a request to the image endpoint
 
@@ -76,6 +78,7 @@ class Client:
         extension:`class: str`: Option to change the file extension - overwrites the current option
         raw:`class: bool`: Returns a dict with the filtered response + the raw response
         override_raw:`class: bool`: Return just the response
+        get_type:`class: bool:`: Return the file extension for the file
 
         returns: tp.Union[str, io.BytesIO, None]:
             Returns a string if your saving it to a file - Path to the file
@@ -101,15 +104,16 @@ class Client:
             errors.raise_error(error)
 
         result = await response.read()
+        
+        if response.content_type == 'image/gif':
+            temp_ext = '.gif'
+        elif response.content_type == 'text/plain':
+            # Endpoints such as `asciify` return images as text
+            temp_ext = '.txt'
+        else:
+            temp_ext = '.png'
 
         if save:
-            if response.content_type == 'image/gif':
-                temp_ext = '.gif'
-            elif response.content_type == 'text/plain':
-                # Endpoints such as `asciify` return images as text
-                temp_ext = '.txt'
-            else:
-                temp_ext = '.png'
             extension = extension or temp_ext
             path = path or (self.path or './')
 
@@ -123,8 +127,10 @@ class Client:
                     await file.write(result)
 
             return file_path if not raw else {'filtered': filepath, 'response': response}
-
-        return io.BytesIO(result) if not raw else {'filtered': io.BytesIO(result), 'response': response}
+        if not get_type:
+            return io.BytesIO(result) if not raw else {'filtered': io.BytesIO(result), 'response': response}
+        
+        return (io.BytesIO(result) if not raw else {'filtered': io.BytesIO(result), 'response': response}), temp_ext[1:]
 
     async def chatbot(self, message: str, authorization: str = None, true_json: bool = False,
                       json_: bool = False, raw: bool = False, override_raw: bool = False) -> tp.Union[None, str, dict]:
