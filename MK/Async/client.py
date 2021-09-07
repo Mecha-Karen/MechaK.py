@@ -28,7 +28,28 @@ except ImportError:
 class Client:
     __slots__ = ('token', 'session', 'loop', 'base', 'path')
     
-    def __init__(self, token: str, path: str = None, session: aiohttp.ClientSession = None, loop: asyncio.AbstractEventLoop = None) -> None:
+    def __init__(self, token: str, path: str = None, session: aiohttp.ClientSession = None, loop: asyncio.AbstractEventLoop = None,
+                 *, filter_uri: bool = True, ver: str = 'v1'
+                ) -> None:
+        r"""
+        Make requests to each endpoint and filter how you would like it to handle the requests, this client is async so ``await`` syntax is required when calling each endpoint.
+        
+        Parameters
+        ----------
+        token:`class:str`:Your API access token
+        path:`class:Optional[Union[bytes, str, os.Pathlike]]`:Default path to save your files, defaults to your current working directory
+        session:`class:Optional[ClientSession]`:An aiohttp session to make requests from, creates a new session if not provided
+        loop:`class:Optional[AbstractEventLoop]`:An asyncio event loop to create the new session if applicable, uses `get_event_loop` if not provided
+        filter_url:`class:Optional[bool]:`:Option to use `/endpoint` instead of `?filter=...` when making image requests
+        
+        .. versionadded::
+            2.0a
+        ver:`class:Optional[str]:`:Change the API endpoint version to make requests on
+        
+        .. versionadded::
+            2.0a
+        """
+        
         self.token = token
         self.base = 'https://api.mechakaren.xyz/v1/'
 
@@ -37,6 +58,7 @@ class Client:
         
         self.session = session or aiohttp.ClientSession(loop = loop)
         self.path = path
+        self.filter_uri = True
 
     async def image(self, filter: str, image_url: str, authorization: str = None, path: str = os.getcwd(), save: bool = False,
                     filename: str = 'result', extension: str = '.png', raw: bool = False, override_raw: bool = False) -> tp.Union[io.BytesIO, str, None, dict]:
@@ -61,11 +83,15 @@ class Client:
             Returns `None` if there was an error in the request
         """
         base = self.base
-        base += f'image?filter={filter}'
+        
+        if not self.filter_uri:
+            base += f'image?filter={filter}'
+        else:
+            base += f'image/{filter}'
         authorization = authorization or self.token
 
-        response = await self.session.post(
-            base, headers = {'Authorization': authorization}, json = {'image_url': image_url}
+        response = await self.session.get(
+            base, headers = {'Authorization': authorization}, json = {'source_url': image_url}
             )
         if override_raw:
             return response
@@ -80,11 +106,12 @@ class Client:
             if response.content_type == 'image/gif':
                 temp_ext = '.gif'
             elif response.content_type == 'text/plain':
+                # Endpoints such as `asciify` return images as text
                 temp_ext = '.txt'
             else:
                 temp_ext = '.png'
             extension = extension or temp_ext
-            path = self.path or path
+            path = path or (self.path or './')
 
             file_path = f'{path}/{filename}{extension}'
             
