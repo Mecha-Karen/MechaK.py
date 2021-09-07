@@ -26,7 +26,7 @@ except ImportError:
     requote_uri = None
 
 class Client:
-    __slots__ = ('token', 'session', 'loop', 'base', 'path')
+    __slots__ = ('token', 'session', 'loop', 'base', 'path', 'filter_uri')
     
     def __init__(self, token: str, path: str = None, session: aiohttp.ClientSession = None, loop: asyncio.AbstractEventLoop = None,
                  *, filter_uri: bool = True, ver: str = 'v1'
@@ -51,7 +51,7 @@ class Client:
         """
         
         self.token = token
-        self.base = 'https://api.mechakaren.xyz/v1/'
+        self.base = f'https://api.mechakaren.xyz/{ver}/'
 
         loop = loop or asyncio.get_event_loop()
         self.loop = loop
