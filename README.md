@@ -60,13 +60,19 @@ asyncio.run(my_coro())
 ## Intergrating with discord.py
 ```py
 from MK.Async import Client
+from discord.ext import commands
+import discord
 
+bot = commands.Bot(command_prefix='your-prefix')
 client = Client(token='My Secret Token', **kwargs)
 
-@self.command()
+@bot.command()
 async def invert(ctx, user: discord.Member):
     image = await client.image('invert', str(user.avatar_url_as(static_format='png')))
     ## You can put any image file as long as it can accessed by the API
-    ## recomend using PNG as its less likely to cause P MODE errors! 
+    ## It will raise an error if you dont provide correct details such as ``Authorization``
+    
     await ctx.send(file=discord.File(fp=image, filename='invert.png'))
+    
+bot.run('token-here')
 ```
