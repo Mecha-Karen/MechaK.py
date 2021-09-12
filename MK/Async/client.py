@@ -62,13 +62,13 @@ class Client:
 
     async def image(self, filter: str, image_url: str, authorization: str = None, path: str = os.getcwd(), save: bool = False,
                     filename: str = 'result', extension: str = '.png', raw: bool = False, override_raw: bool = False,
-                    get_type: bool = False,
+                    get_type: bool = False, animate: bool = True, **params
                    ) -> tp.Union[io.BytesIO, str, None, dict]:
         r"""
         Make a request to the image endpoint
 
         Parameters
-        ---------------
+        ----------
         filter:`class: str`: The endpoint to ping e.g. Invert / Flip etc...
         image_url:`class: str`: Image to actually edit - Best to use .png
         authorization:`class: str`: Optional feature to overwrite the token provided when iniating a client
@@ -79,6 +79,7 @@ class Client:
         raw:`class: bool`: Returns a dict with the filtered response + the raw response
         override_raw:`class: bool`: Return just the response
         get_type:`class: bool:`: Return the file extension for the file
+        animate:`class: bool`: If your image is a GIF it will apply the affect to all frames, defaults to True
 
         returns: tp.Union[str, io.BytesIO, None]:
             Returns a string if your saving it to a file - Path to the file
@@ -92,9 +93,12 @@ class Client:
         else:
             base += f'image/{filter}'
         authorization = authorization or self.token
+        if animate:
+            params.update({'animate': True})
 
         response = await self.session.get(
-            base, headers = {'Authorization': authorization}, json = {'source_url': image_url}
+            base, headers = {'Authorization': authorization}, json = {'source_url': image_url},
+            params = params
             )
         if override_raw:
             return response
