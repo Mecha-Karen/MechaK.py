@@ -94,7 +94,7 @@ class Client:
             base += f'image/{filter}'
         authorization = authorization or self.token
         if animate:
-            params.update({'animate': True})
+            params.update({'animate': str(bool(animate))})
 
         response = await self.session.get(
             base, headers = {'Authorization': authorization}, json = {'source_url': image_url},
